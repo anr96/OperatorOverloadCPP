@@ -42,7 +42,7 @@ public:
 
     Matrix<T> &operator*=(const T &);
 
-    /*
+
     friend void operator<<(ostream &os, const Matrix<T> &m) {
         for (int i = 0; i < m.rows; i++) {
             for (int j = 0; j < m.cols; j++) {
@@ -53,11 +53,11 @@ public:
         os << endl;
         os << endl;
     }
-     */
+
 
     void printMatrix();
 
-    //TODO Implement the functions below
+    // Implement the functions below
 
     Matrix<T> operator+(const Matrix<T> &);//Matrix Addition
 
@@ -68,6 +68,8 @@ public:
     Matrix<T> operator*(const T &);//Matrix Multiplication with a Scalar
 
 };
+
+
 
 template<class T>
 void Matrix<T>::validSizeCheck(int rows, int cols) {
@@ -185,4 +187,63 @@ void Matrix<T>::printMatrix() {
 }
 
 
-//TODO Implement the functions here.
+// Implement the functions here.
+template<class T>
+Matrix<T> Matrix<T>::operator+(const Matrix<T> &rhs){
+   Matrix<T> result(rows, cols);
+    if(rows!=rhs.rows || cols!=rhs.cols){
+        throw exception();
+    }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+          result.matrix[i][j] = matrix[i][j] + rhs.matrix[i][j];
+        }
+    }
+    return result;
+}
+
+
+template<class T>
+Matrix<T> Matrix<T>::operator-(const Matrix<T> &rhs){
+    Matrix<T> result(rows, cols);
+    if(rows!=rhs.rows || cols!=rhs.cols){
+        throw exception();
+    }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result.matrix[i][j] = matrix[i][j] -  rhs.matrix[i][j];
+        }
+    }
+    return result;
+}
+
+template<class T>
+Matrix<T> Matrix<T>::operator*(const Matrix<T> &rhs){
+    Matrix<T> result(rows, rhs.cols);
+    if(cols!=rhs.rows){
+        throw exception();
+    }
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < rhs.cols; ++j) {
+            for (int k = 0; k < cols; ++k) {
+                result.matrix[i][j] += matrix[i][k] * rhs.matrix[k][j];
+            }
+        }
+    }
+    return result;
+}
+
+template<class T>
+Matrix<T> Matrix<T>::operator*(const T &rhs){ //scalar multiplication
+    Matrix<T> result(rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result.matrix[i][j] = matrix[i][j] * rhs;
+        }
+    }
+    return result;
+}
+
+
+
+
