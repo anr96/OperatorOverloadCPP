@@ -1,10 +1,8 @@
 #HW7 Operator Overloading 
 
-#First-Name Last-Name
+#Amanda Robinson
 
-TODO - Update your name in this readme.
-
-TODO - Add a badge from travis CI here
+[![Build Status](https://travis-ci.com/csc340-03-spring-2016/anr96-HW7.svg?token=sqKHHUsKkyZTggTth4Mt&branch=master)](https://travis-ci.com/csc340-03-spring-2016/anr96-HW7)
 
 ##Problem statement:
 Overload the operators +,-,* in the class Matrix. Look into the file `Matrix.h` for more details.
